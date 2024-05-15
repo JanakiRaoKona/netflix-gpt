@@ -1,10 +1,21 @@
 # NetflixGpt
 
-- crfeate React App
+- create React App
 - configured Tailwind CSS
 - Header
+- Routing
 - Login Form
 - Sign Up Form
+- Form Validation
+- useRef Hook
+- firebase setup
+- deploy firebase
+- create sign Up for firebase user account
+- implement sign in user
+- created user slice with redux store
+- implimented signout
+- update profile
+- fetch the movies from TMBD site
 
 # Features
 - Login/SignUp
