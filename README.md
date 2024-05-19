@@ -16,7 +16,19 @@
 - implimented signout
 - update profile
 - fetch the movies from TMBD site
-
+-  Sign Up User Profile Bug fix
+- Bug Fix: Sign in and Sign Up redirect Page Auth Protection vise versa
+-  unsubscribe the onAuthStateChangeCallBack when Header will UnMount
+- Add Hard Coded Files to constants.js files
+- Register TMBD and acces API , fetch the movies List
+- Get Data from TMBD API Now Playing List
+- Custom Hook for no Playing Movies.
+- update store with movies data.
+- Planning for main-container and secondary-container.
+- update store with trailer video data.
+- embded the Youtube video make it auto play and mute.
+-  we add tail-wind make it look make main-container awsome.
+ 
 # Features
 - Login/SignUp
     - Sign in or Sign up Form 

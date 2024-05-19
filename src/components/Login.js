@@ -4,15 +4,14 @@ import { useState, useRef } from 'react'
 import { checkValidData } from '../utils/validate'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../utils/firebase';
-import { useNavigate } from 'react-router-dom';
 import { updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
-
+import { PHOTO_URL } from '../utils/constants';
 function Login() {
-    const [isSignIn, setSignIn] = useState(true)
-    const [errorMsg, setErrorMsg] = useState(null)
-    const navigate = useNavigate()
+    const [isSignIn, setSignIn] = useState(true);
+    const [errorMsg, setErrorMsg] = useState(null);
+
     const dispatch = useDispatch();
 
     const name = useRef(null);
@@ -29,17 +28,14 @@ function Login() {
             // sign in logic
             signInWithEmailAndPassword(auth, email.current.value, password.current.value)
                 .then((userCredential) => {
-                    // Signed in 
-                    const user = userCredential.user;
+                    // Signed in
 
-                    console.log(user);
-                    navigate('/browse');
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     setErrorMsg(errorCode + "-" + errorMessage);
-                    navigate('/');
+
                 });
 
         }
@@ -57,17 +53,17 @@ function Login() {
             createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
                 .then((userCredential) => {
                     // Signed up 
-                    // const user = userCredential.user;
+
 
 
 
                     updateProfile(auth.currentUser, {
-                        displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/130660985?v=4"
+                        displayName: name.current.value, photoURL: PHOTO_URL
                     }).then(() => {
                         // Profile updated!
                         const { uid, email, displayName, photoURL } = auth.currentUser;
                         dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoUrl: photoURL }))
-                        navigate("/browse")
+
                     }).catch((error) => {
                         // An error occurred
                         // ...
@@ -75,15 +71,14 @@ function Login() {
                     });
 
 
-                    // console.log(user);
-                    navigate('/browse');
+
                 })
                 .catch((error) => {
                     //  error handling
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     setErrorMsg(errorCode + "-" + errorMessage);
-                    navigate('/');
+
                 });
         }
         else {
@@ -101,15 +96,11 @@ function Login() {
     }
 
     return (
-        <div>
+        <div className="h-screen w-screen bg-cover bg-[url('https://www.okynemedialab.com/wp-content/uploads/2019/11/netflix-background-50-Black-1080x608.jpg')]">
+
             <Header />
-            <div className="absolute">
-                <img src="https://www.okynemedialab.com/wp-content/uploads/2019/11/netflix-background-50-Black-1080x608.jpg"
-                    alt="bgImage"
-                    className="bg-cover w-lvw"
-                />
-            </div>
-            <form onSubmit={(e) => e.preventDefault()} className="p-6 bg-black bg-opacity-70 absolute w-3/12 my-32 mx-auto left-0 right-0 flex flex-col justify-center rounded-lg">
+
+            <form onSubmit={(e) => e.preventDefault()} className="mx-auto p-6 bg-black bg-opacity-70 h-auto w-3/12 my-32 flex flex-col justify-center rounded-lg">
 
                 <h1 className="font-bold text-white text-xl p-2">{isSignIn ? "Sign In" : "Sign Up"}</h1>
 
@@ -135,8 +126,9 @@ function Login() {
                     </span>
                 </p>
             </form>
+        </div >
 
-        </div>
+
     )
 }
 

@@ -1,41 +1,69 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect } from "react"
+import { onAuthStateChanged } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { addUser, removeUser } from '../utils/userSlice'
+import { NETFLIX_LOGO } from "../utils/constants";
 
 const Header = () => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
-    const userPhoto = useSelector(store => store?.user?.photoUrl)
-    console.log(userPhoto)
+    const user = useSelector(store => store?.user)
+
 
 
     const handleSignOut = () => {
+        signOut(auth)
+            .then(() => {
 
-        signOut(auth).then(() => {
-            // Sign-out successful.
-            navigate('/')
-        }).catch((error) => {
-            // An error happened.
-        });
+            })
+            .catch((error) => {
+                navigate('/error')
+            });
     }
+
+    useEffect(() => {
+
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+
+                const { uid, email, displayName, photoURL } = user;
+                dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoUrl: photoURL }))
+                navigate('/browse');
+            } else {
+
+                dispatch(removeUser(null))
+                navigate('/')
+
+            }
+
+        });
+        // un subscribe when component will unmount;
+
+        return () => unsubscribe();
+
+    }, [])
 
 
     return (
 
-        <div className="flex w-11/12 justify-between absolute bg-gradient-to-b from-black z-10">
+        <div className="flex w-full justify-between bg-gradient-to-b from-black p-3">
             <div>
-                <img src="https://www.freepnglogos.com/uploads/netflix-logo-0.png"
+                <img src={NETFLIX_LOGO}
                     alt="logo"
                     className="w-36" />
             </div>
-            {
-                userPhoto &&
-                <div className="p-1">
-                    <img className="w-12" alt="user-icon" src={userPhoto} />
-                    <button onClick={handleSignOut} type="button" className="font-semibold text-red-500" >Sign Out</button>
-                </div>
-            }
+
+            {user && <div className="">
+                <img className="w-14" alt="user-icon" src={user?.photoUrl} />
+                <button onClick={handleSignOut} type="button" className="font-semibold text-sm text-red-500" >Sign Out</button>
+            </div>}
+
         </div>
 
 
