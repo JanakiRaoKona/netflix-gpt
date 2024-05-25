@@ -1,6 +1,6 @@
 export const NETFLIX_LOGO = "https://www.freepnglogos.com/uploads/netflix-logo-0.png";
-export const PHOTO_URL = "https://i.pinimg.com/originals/0d/dc/ca/0ddccae723d85a703b798a5e682c23c1.png"
-
+export const PHOTO_URL = "https://wallpapers.com/images/hd/netflix-profile-pictures-5yup5hd2i60x7ew3.jpg"
+export const IMAGE_CDN_URL = "https://image.tmdb.org/t/p/w780"
 export const options = {
     method: 'GET',
     headers: {

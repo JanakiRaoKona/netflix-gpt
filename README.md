@@ -27,8 +27,13 @@
 - Planning for main-container and secondary-container.
 - update store with trailer video data.
 - embded the Youtube video make it auto play and mute.
--  we add tail-wind make it look make main-container awsome.
- 
+-  we add tail-wind make it look make main-container look awsome.
+-  Build secondary component.
+-  Movies List build.
+-  Movies Cards Build.
+-  Build different Movie Cards Popular, TopRated, Upcoming Movies Cards.
+-  Made the Browser amzing UI by using Tailwind Css.  
+
 # Features
 - Login/SignUp
     - Sign in or Sign up Form 
