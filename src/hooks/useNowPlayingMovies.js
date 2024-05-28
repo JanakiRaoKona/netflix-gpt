@@ -1,14 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { options } from '../utils/constants'
 import { addMoviesNow } from '../utils/moviesNow'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 
 const useNowPlayingMovies = () => {
+    const nowPlayingMovies = useSelector(store => store.moviesNowObj)
 
     const dispatch = useDispatch()
     useEffect(() => {
-        getMoviesData();
+        if (!nowPlayingMovies) getMoviesData();
 
     }, [])
 

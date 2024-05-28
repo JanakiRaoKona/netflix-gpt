@@ -8,3 +8,4 @@ export const options = {
         Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNWRmM2VhMzgxZDVjZmM3ZjFlZjFhYTY2MGNkOWQxMyIsInN1YiI6IjY2NDZjMmZlZWQ0MWNlZTU1NDI1YWQzOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.mu4NKgjgAaruvs45a0_zKlQ-CCBNYJkWaARKYx3CXMU'
     }
 };
+

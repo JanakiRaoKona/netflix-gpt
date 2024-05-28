@@ -3,11 +3,12 @@ import { IMAGE_CDN_URL } from '../utils/constants'
 
 const MovieCard = (props) => {
     const { movies } = props
-    console.log(movies)
+
     const { poster_path } = movies
+    if (!poster_path) return null;
 
     return (
-        <div className='w-48'>
+        <div className='md:w-48 w-32'>
             <img className='p-2' alt="movie card" src={IMAGE_CDN_URL + poster_path} />
         </div>
     )

@@ -8,14 +8,13 @@ const MainContainer = () => {
     const movies = useSelector(store => store?.movies?.moviesNowObj)
     if (!movies) return
     const mainFirstMovie = movies[0];
-    // console.log(mainFirstMovie);
+
     const { original_title, overview, id } = mainFirstMovie
 
     return (
-        <div>
+        <div className="mt-28 relative md:mt-0 z-20">
             <VideoTitle title={original_title} overView={overview} />
             <VideoBg movieId={id} />
-
         </div>
     )
 }

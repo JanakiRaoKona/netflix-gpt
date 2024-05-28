@@ -33,6 +33,14 @@
 -  Movies Cards Build.
 -  Build different Movie Cards Popular, TopRated, Upcoming Movies Cards.
 -  Made the Browser amzing UI by using Tailwind Css.  
+- Building Search-GPT Suggestion for movies.
+-  built search bar.
+-  add search bar for multi language fetaures in search bar
+-  intigrate GPT Keys.
+- create gpt slice add movie Data.
+- re used movieList component.
+- Memorization.
+- Added .envfile.
 
 # Features
 - Login/SignUp

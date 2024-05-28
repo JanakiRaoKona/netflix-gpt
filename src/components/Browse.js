@@ -5,24 +5,34 @@ import useTopRatedMovies from '../hooks/useTopRatedMovies';
 import useUpcomingMovies from '../hooks/useUpcomingMovies';
 import MainContainer from './MainContainer';
 import SecondaryContainer from './SecondaryContainer';
+import GptSearch from './GptSearch';
+import { useSelector } from 'react-redux';
 const Browse = () => {
     useNowPlayingMovies();
     useNowPopularMovies();
     useTopRatedMovies();
     useUpcomingMovies();
 
+    const showGptSearchView = useSelector(store => store.gpt.showGptSearch)
+
+
     return (
-        <div className="bg-black">
-            <div className="relative">
-                <div className="absolute top-0 left-0 w-full z-20 mt-20">
+        <div className={`${!showGptSearchView ? "bg-black mt-0" : ""}`}>
+            <div className={`${!showGptSearchView ? "relative" : ""}`}>
+                <div className="relative top-0 left-0 w-full z-50">
                     <Header />
                 </div>
-                <div className="-mt-20">
-                    <MainContainer />
-                    <SecondaryContainer />
+
+                <div className={`${!showGptSearchView ? "-mt-28" : "mt-0"}`}>
+                    {showGptSearchView ? <GptSearch /> :
+                        <>
+                            <MainContainer />
+                            <SecondaryContainer />
+                        </>}
                 </div>
             </div>
         </div>
+
     )
 }
 

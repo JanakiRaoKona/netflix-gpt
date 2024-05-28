@@ -13,7 +13,7 @@ const VideoBg = ({ movieId }) => {
 
 
     return (
-        <div className="">
+        <div className="-mt-40">
 
             <iframe className='w-full aspect-video'
 
